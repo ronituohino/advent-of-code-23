@@ -1,4 +1,5 @@
 pub mod day1;
+pub mod day2;
 
 use std::fs::read_to_string;
 pub fn read_lines(filename: &str) -> Vec<String> {
