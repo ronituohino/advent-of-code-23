@@ -1,7 +1,7 @@
-use aoc::day2::two;
+use aoc::day3::two;
 
 use aoc::read_lines;
-const INPUT_PATH: &str = "./src/day2/input.txt";
+const INPUT_PATH: &str = "./src/day3/input.txt";
 
 fn main() {
     let lines = read_lines(INPUT_PATH);
