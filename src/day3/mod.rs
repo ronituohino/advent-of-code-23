@@ -1,5 +1,3 @@
-use core::num;
-
 fn get_char(x: usize, y: usize, map: &Vec<String>) -> char {
     map.get(y).unwrap().chars().nth(x).unwrap()
 }

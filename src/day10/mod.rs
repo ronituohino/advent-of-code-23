@@ -1,52 +1,4 @@
-#[derive(Debug)]
-struct Map<T> {
-    pub width: usize,
-    pub height: usize,
-    pub horizontal: Vec<Vec<T>>,
-}
-
-impl<T> Map<T> {
-    fn new(width: usize, height: usize) -> Self {
-        Self {
-            width,
-            height,
-            horizontal: vec![],
-        }
-    }
-
-    fn insert_horizontal(&mut self, values: Vec<T>) {
-        self.horizontal.push(values);
-    }
-
-    fn get(&self, x: i32, y: i32) -> Result<&T, ()> {
-        if x >= 0 && x < self.width as i32 && y >= 0 && y < self.height as i32 {
-            Ok(self
-                .horizontal
-                .get(y as usize)
-                .unwrap()
-                .get(x as usize)
-                .unwrap())
-        } else {
-            Err(())
-        }
-    }
-
-    fn set(&mut self, x: i32, y: i32, val: T) -> Result<(), ()> {
-        if x >= 0 && x < self.width as i32 && y >= 0 && y < self.height as i32 {
-            let el = self
-                .horizontal
-                .get_mut(y as usize)
-                .unwrap()
-                .get_mut(x as usize)
-                .unwrap();
-
-            let _ = std::mem::replace(el, val);
-            Ok(())
-        } else {
-            Err(())
-        }
-    }
-}
+use crate::Map;
 
 pub fn one(lines: &Vec<String>) -> i32 {
     let height = lines.len();
@@ -59,8 +11,8 @@ pub fn one(lines: &Vec<String>) -> i32 {
     for y in 0..height {
         let line = lines.get(y).unwrap();
         let chars: Vec<char> = line.chars().collect();
-        map.insert_horizontal(chars);
-        dist_map.insert_horizontal(vec![-1; width]);
+        map.insert_row(chars, None);
+        dist_map.insert_row(vec![-1; width], None);
 
         for x in 0..width {
             let c = &line[x..x + 1];
@@ -163,8 +115,8 @@ pub fn two(lines: &Vec<String>) -> i32 {
     for y in 0..height {
         let line = lines.get(y).unwrap();
         let chars: Vec<char> = line.chars().collect();
-        map.insert_horizontal(chars);
-        visit_map.insert_horizontal(vec![0; width]);
+        map.insert_row(chars, None);
+        visit_map.insert_row(vec![0; width], None);
 
         for x in 0..width {
             let c = &line[x..x + 1];
