@@ -5,5 +5,5 @@ const INPUT_PATH: &str = "./src/day13/input.txt";
 
 fn main() {
     let lines = read_lines(INPUT_PATH);
-    println!("{:?}", one(&lines));
+    println!("{:?}", two(&lines));
 }
