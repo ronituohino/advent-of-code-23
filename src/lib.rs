@@ -3,6 +3,7 @@ pub mod day10;
 pub mod day11;
 pub mod day12;
 pub mod day13;
+pub mod day14;
 pub mod day2;
 pub mod day3;
 pub mod day4;
@@ -12,7 +13,10 @@ pub mod day7;
 pub mod day8;
 pub mod day9;
 
-use std::fs::read_to_string;
+use std::{
+    fmt::{Debug, Display},
+    fs::read_to_string,
+};
 pub fn read_lines(filename: &str) -> Vec<String> {
     let mut result = Vec::new();
     for line in read_to_string(filename).unwrap().lines() {
@@ -28,7 +32,7 @@ pub struct Map<T> {
     pub rows: Vec<Vec<T>>,
 }
 
-impl<T: Clone> Map<T> {
+impl<T: Clone + Display> Map<T> {
     pub fn new(width: usize, height: usize) -> Self {
         Self {
             width,
@@ -77,6 +81,15 @@ impl<T: Clone> Map<T> {
             Ok(())
         } else {
             Err(())
+        }
+    }
+
+    pub fn pretty_print(&self) {
+        for y in 0..self.height {
+            for x in 0..self.width {
+                print!("{}", self.get(x as i32, y as i32).unwrap())
+            }
+            println!("")
         }
     }
 }

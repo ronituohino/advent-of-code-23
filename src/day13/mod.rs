@@ -199,7 +199,6 @@ pub fn two(lines: &Vec<String>) -> i32 {
                 break;
             }
         }
-        println!("{}", sum);
     }
 
     sum
