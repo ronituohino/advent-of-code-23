@@ -16,7 +16,7 @@ pub fn one(lines: &Vec<String>) -> i32 {
 pub fn two(lines: &Vec<String>) {
     let mut map = init(lines);
     // roll round rocks north
-    for i in 0..1_000 {
+    for _ in 0..1_000 {
         roll_north(&mut map);
         roll_west(&mut map);
         roll_south(&mut map);
