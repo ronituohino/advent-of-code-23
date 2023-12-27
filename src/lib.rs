@@ -6,6 +6,7 @@ pub mod day13;
 pub mod day14;
 pub mod day15;
 pub mod day16;
+pub mod day17;
 pub mod day2;
 pub mod day3;
 pub mod day4;
@@ -34,7 +35,7 @@ pub struct Map<T> {
     pub rows: Vec<Vec<T>>,
 }
 
-impl<T: Clone + Display> Map<T> {
+impl<T: Clone + Debug> Map<T> {
     pub fn new(width: usize, height: usize) -> Self {
         Self {
             width,
@@ -89,7 +90,7 @@ impl<T: Clone + Display> Map<T> {
     pub fn pretty_print(&self) {
         for y in 0..self.height {
             for x in 0..self.width {
-                print!("{}", self.get(x as i32, y as i32).unwrap())
+                print!("{:?}", self.get(x as i32, y as i32).unwrap())
             }
             println!("")
         }
